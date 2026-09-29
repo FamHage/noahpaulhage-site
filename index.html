@@ -3,24 +3,35 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <meta name="description" content="The editorial archive of Noah Paul Hage." />
-    <meta name="theme-color" content="#f3efe8" />
-    <title>Noah Paul Hage — Fashion Designer</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500;1,600&family=DM+Sans:wght@400;500&family=Parisienne&display=swap" rel="stylesheet" />
-    <link rel="stylesheet" href="styles.css" />
-    <style>.look-image { opacity: .72; }</style>
+    <meta name="description" content="Noah Paul Hage." />
+    <title>Noah Paul Hage</title>
     <link rel="icon" href="favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
     <header class="site-header">
-      <a class="wordmark" href="#work" aria-label="Noah Paul Hage archive home">NPH</a>
-      <nav aria-label="Archive navigation"><a href="#work">Work</a><a href="#house-codes">House Codes</a><a href="#process">Process</a><a href="#about">About</a></nav>
-      <span class="archive-label">Archive</span>
+      <a href="#home" class="site-name">Noah Paul Hage</a>
+      <nav aria-label="Primary navigation">
+        <a href="#work">Work</a>
+        <a href="#archive">Archive</a>
+        <a href="#about">About</a>
+      </nav>
     </header>
-    <main id="app" tabindex="-1"></main>
-    <footer><span>© <span id="year"></span> Noah Paul Hage</span><span>Editorial archive · placeholder study</span></footer>
-    <script src="content.js"></script><script src="app.js"></script>
+    <main>
+      <section id="home" class="page-section" aria-labelledby="home-title">
+        <h1 id="home-title">Noah Paul Hage</h1>
+      </section>
+      <section id="work" class="page-section" aria-labelledby="work-title">
+        <h2 id="work-title">Work</h2>
+        <div class="placeholder-slot" data-content-id="work-hero">Image placeholder: work-hero</div>
+      </section>
+      <section id="archive" class="page-section" aria-labelledby="archive-title">
+        <h2 id="archive-title">Archive</h2>
+        <div class="placeholder-slot" data-content-id="archive-image">Image placeholder: archive-image</div>
+      </section>
+      <section id="about" class="page-section" aria-labelledby="about-title">
+        <h2 id="about-title">About</h2>
+      </section>
+    </main>
   </body>
 </html>
