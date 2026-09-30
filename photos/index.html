@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Photographs by Noah Paul Hage." />
+    <title>Photos — Noah Paul Hage</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="photos.css" />
+  </head>
+  <body>
+    <main class="photos-page" aria-label="Photo archive">
+      <a class="photos-home" href="../" aria-label="Return to homepage" data-page-link>
+        <img src="../images/homepage-photos.png" alt="" />
+      </a>
+
+      <p class="photos-counter" aria-live="polite"><span data-current>1</span>/<span data-total>5</span></p>
+
+      <section class="photo-stage" aria-label="Photograph gallery">
+        <button class="photo-trigger" type="button" aria-label="Open photograph index card">
+          <img data-photo-image src="../images/photos/photos-01.png" alt="Untitled photograph" />
+        </button>
+      </section>
+
+      <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label="Previous photograph">←</button>
+      <button class="gallery-arrow gallery-arrow--next" type="button" aria-label="Next photograph">→</button>
+
+      <aside class="photo-card" data-photo-card hidden aria-live="polite" aria-label="Photograph index card">
+        <button class="photo-card__close" type="button" aria-label="Close index card">×</button>
+        <dl>
+          <div><dt>Title</dt><dd data-card-title></dd></div>
+          <div><dt>Date</dt><dd data-card-date></dd></div>
+          <div><dt>Location</dt><dd data-card-location></dd></div>
+          <div><dt>Medium</dt><dd data-card-medium></dd></div>
+          <div class="photo-card__context"><dt>Context</dt><dd data-card-context></dd></div>
+        </dl>
+      </aside>
+    </main>
+    <script src="photos-data.js"></script>
+    <script src="photos.js"></script>
+    <script src="../site-transition.js"></script>
+  </body>
+</html>
