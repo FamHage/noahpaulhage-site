@@ -11,7 +11,11 @@ body { overflow: hidden; background: #7892be; }
   min-height: 30rem;
   overflow: hidden;
   background: url("images/homepage-background.png") center center / cover no-repeat;
+  opacity: 1;
+  transition: opacity 420ms ease;
 }
+
+html.page-leaving .homepage { opacity: 0; }
 
 .homepage__logo,
 .homepage__link {
@@ -54,5 +58,5 @@ body { overflow: hidden; background: #7892be; }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homepage__link { transition: none; }
+  .homepage, .homepage__link { transition: none; }
 }
