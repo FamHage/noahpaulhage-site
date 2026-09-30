@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Looks by Noah Paul Hage." />
+    <title>Looks — Noah Paul Hage</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../art/art.css" />
+    <link rel="stylesheet" href="looks.css" />
+  </head>
+  <body>
+    <main class="art-page looks-page" aria-label="Looks archive">
+      <a class="art-home looks-home" href="../" aria-label="Return to homepage" data-page-link>
+        <img src="../images/homepage-looks.png" alt="" />
+      </a>
+      <p class="art-counter" aria-live="polite"><span data-current>1</span>/<span data-total>5</span></p>
+      <section class="artwork-stage" aria-label="Look gallery">
+        <img class="artwork-image" data-look-image src="../images/looks/looks-01.jpeg" alt="Look one" />
+        <div class="artwork-index" data-look-index aria-label="Look details"></div>
+      </section>
+      <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label="Previous look">←</button>
+      <button class="gallery-arrow gallery-arrow--next" type="button" aria-label="Next look">→</button>
+      <aside class="index-card look-card" data-look-card hidden aria-live="polite" aria-label="Look index card">
+        <button class="index-card__close" type="button" aria-label="Close index card">×</button>
+        <dl>
+          <div><dt>Title</dt><dd data-card-title></dd></div>
+          <div><dt>Garment / detail</dt><dd data-card-garment></dd></div>
+          <div><dt>Material</dt><dd data-card-material></dd></div>
+          <div><dt>Construction</dt><dd data-card-construction></dd></div>
+          <div><dt>Collection</dt><dd data-card-collection></dd></div>
+          <div class="look-card__context"><dt>Context</dt><dd data-card-context></dd></div>
+        </dl>
+      </aside>
+    </main>
+    <script src="looks-data.js"></script>
+    <script src="looks.js"></script>
+    <script src="../site-transition.js"></script>
+  </body>
+</html>

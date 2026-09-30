@@ -1,0 +1,19 @@
+.looks-page { background: #d5d5d0 url("../images/looks/looks-background.png") center / cover no-repeat; }
+.looks-page .artwork-stage { top: 16%; width: min(37%, 30rem); aspect-ratio: 3 / 4; }
+.looks-page .artwork-image { object-fit: cover; }
+.looks-page .art-counter { top: 10.4%; }
+.looks-page .gallery-arrow { color: #605d63; }
+.looks-home { top: -1.3%; left: -2.1%; width: 28%; }
+.look-card { width: min(24rem, 76vw); padding: 1.35rem 1.5rem; }
+.look-card dl { margin: 0; }
+.look-card dl > div { display: grid; grid-template-columns: 6.4rem 1fr; gap: .6rem; margin: .28rem 0; font-size: .78rem; line-height: 1.45; }
+.look-card dt { color: #989199; font-weight: 400; }
+.look-card dd { margin: 0; }
+.look-card__context { display: block !important; margin-top: 1rem !important; }
+.look-card__context dd { margin-top: .25rem; }
+@media (max-aspect-ratio: 4 / 5) {
+  .looks-home { top: 1%; left: -4%; width: 35%; }
+  .looks-page .art-counter { top: 16%; }
+  .looks-page .artwork-stage { top: 22%; width: min(67%, 25rem); }
+  .looks-page .gallery-arrow { top: 57%; }
+}
