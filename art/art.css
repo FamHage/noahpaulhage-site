@@ -1,0 +1,117 @@
+* { box-sizing: border-box; }
+
+html, body { width: 100%; min-width: 320px; min-height: 100%; margin: 0; }
+
+body { overflow: hidden; color: #606070; font-family: Arial, Helvetica, sans-serif; }
+
+.art-page {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  background: #ded6d2 url("../images/art/paper-background.png") center / 500px 180px repeat;
+  animation: page-in 560ms ease both;
+  transition: opacity 420ms ease;
+}
+
+html.page-leaving .art-page { opacity: 0; }
+
+.art-home {
+  position: absolute;
+  z-index: 3;
+  top: -1.3%;
+  left: -2.1%;
+  display: block;
+  width: 35.5%;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.art-home img { display: block; width: 100%; height: auto; }
+.art-home:hover { opacity: .94; transform: scale(1.02); }
+.art-home:focus-visible, .gallery-arrow:focus-visible, .artwork-index__item:focus-visible, .index-card__close:focus-visible { outline: 1px solid #5d5b68; outline-offset: 4px; }
+
+.art-counter {
+  position: absolute;
+  z-index: 2;
+  top: 18.8%;
+  left: 50%;
+  margin: 0;
+  color: #5d5c68;
+  font-size: clamp(1.35rem, 2.15vw, 2.05rem);
+  font-weight: 400;
+  transform: translateX(-50%);
+}
+
+.artwork-stage {
+  position: absolute;
+  top: 26.2%;
+  left: 50%;
+  width: min(57%, 70rem);
+  aspect-ratio: 1663 / 946;
+  transform: translateX(-50%);
+}
+
+.artwork-image { display: block; width: 100%; height: 100%; object-fit: cover; }
+.artwork-index { position: absolute; inset: 0; }
+
+.artwork-index__item {
+  position: absolute;
+  display: block;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.artwork-index__item img { display: block; width: 100%; height: auto; }
+.artwork-index__item:hover { opacity: .94; transform: scale(1.02); }
+
+.gallery-arrow {
+  position: absolute;
+  z-index: 2;
+  top: 53.5%;
+  padding: 0;
+  border: 0;
+  color: #616170;
+  background: transparent;
+  font: 400 clamp(2rem, 3.2vw, 3rem)/1 Arial, Helvetica, sans-serif;
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.gallery-arrow:hover { opacity: .75; transform: scale(1.05); }
+.gallery-arrow--previous { left: 16.7%; }
+.gallery-arrow--next { right: 11.7%; }
+
+.index-card {
+  position: absolute;
+  z-index: 5;
+  top: 50%;
+  left: 50%;
+  width: min(18rem, 72vw);
+  padding: 1.2rem;
+  color: #5f5d69;
+  background: rgba(246, 241, 235, .94);
+  box-shadow: 0 1px 10px rgba(79, 71, 77, .12);
+  transform: translate(-50%, -50%);
+}
+
+.index-card[hidden] { display: none; }
+.index-card img { display: block; width: 100%; max-height: 15rem; object-fit: contain; }
+.index-card p { margin: .65rem 0 0; font-size: .8rem; }
+.index-card__close { position: absolute; top: .35rem; right: .5rem; padding: 0; border: 0; background: transparent; color: inherit; font: 1.4rem/1 Arial, sans-serif; cursor: pointer; }
+
+@keyframes page-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-aspect-ratio: 4 / 5) {
+  .art-home { top: 1%; left: -5%; width: 38%; }
+  .art-counter { top: 21%; }
+  .artwork-stage { top: 31%; width: 82%; }
+  .gallery-arrow { top: 60%; }
+  .gallery-arrow--previous { left: 4%; }
+  .gallery-arrow--next { right: 4%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .art-page, .art-home, .artwork-index__item, .gallery-arrow { animation: none; transition: none; }
+}
