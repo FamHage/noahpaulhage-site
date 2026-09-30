@@ -12,7 +12,7 @@ body { overflow: hidden; color: #fff; font-family: Arial, Helvetica, sans-serif;
 }
 html.page-leaving .photos-page { opacity: 0; }
 
-.photos-home { position: absolute; z-index: 3; top: 1.5%; left: 2%; display: block; width: 14%; height: 9%; overflow: hidden; transition: opacity 180ms ease, transform 180ms ease; }
+.photos-home { position: absolute; z-index: 3; top: 1.6rem; left: 1.6rem; display: block; width: clamp(3rem, 5vw, 4.5rem); overflow: hidden; transition: opacity 180ms ease, transform 180ms ease; }
 .photos-home img { display: block; width: 100%; height: auto; }
 .photos-home:hover { opacity: .94; transform: scale(1.02); }
 .photos-home:focus-visible, .gallery-arrow:focus-visible, .photo-trigger:focus-visible, .photo-card__close:focus-visible { outline: 1px solid rgba(255,255,255,.95); outline-offset: 4px; }
@@ -42,7 +42,7 @@ html.page-leaving .photos-page { opacity: 0; }
 @keyframes card-in { from { opacity:0; } to { opacity:1; } }
 
 @media (max-aspect-ratio:4 / 5) {
-  .photos-home { top:1%; left:2%; width:28%; height:9%; }
+  .photos-home { top:1rem; left:1rem; width:3.5rem; }
   .photos-counter { top:22%; }
   .photo-stage { top:32%; width:78%; }
   .gallery-arrow { top:59%; }
