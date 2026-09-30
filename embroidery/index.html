@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="Embroidery by Noah Paul Hage." />
+    <title>Embroidery — Noah Paul Hage</title>
+    <link rel="icon" href="../favicon.svg" type="image/svg+xml" />
+    <link rel="stylesheet" href="../art/art.css" />
+    <link rel="stylesheet" href="embroidery.css" />
+  </head>
+  <body>
+    <main class="art-page embroidery-page" aria-label="Embroidery archive">
+      <a class="art-home embroidery-home" href="../" aria-label="Return to homepage" data-page-link>
+        <img src="../images/homepage-embroidery.png" alt="" />
+      </a>
+      <p class="art-counter" aria-live="polite"><span data-current>1</span>/<span data-total>5</span></p>
+      <section class="artwork-stage" aria-label="Embroidery gallery">
+        <img class="artwork-image" data-embroidery-image src="../images/embroidery/embroidery-01.jpeg" alt="Hand embroidery detail" />
+        <div class="artwork-index" data-embroidery-index aria-label="Embroidery details"></div>
+      </section>
+      <button class="gallery-arrow gallery-arrow--previous" type="button" aria-label="Previous embroidery piece">←</button>
+      <button class="gallery-arrow gallery-arrow--next" type="button" aria-label="Next embroidery piece">→</button>
+      <aside class="index-card embroidery-card" data-embroidery-card hidden aria-live="polite" aria-label="Embroidery index card">
+        <button class="index-card__close" type="button" aria-label="Close index card">×</button>
+        <dl>
+          <div><dt>Title</dt><dd data-card-title></dd></div>
+          <div><dt>Detail</dt><dd data-card-detail></dd></div>
+          <div><dt>Thread / material</dt><dd data-card-material></dd></div>
+          <div><dt>Technique</dt><dd data-card-technique></dd></div>
+          <div><dt>Placement</dt><dd data-card-placement></dd></div>
+          <div class="embroidery-card__context"><dt>Context</dt><dd data-card-context></dd></div>
+        </dl>
+      </aside>
+    </main>
+    <script src="embroidery-data.js"></script>
+    <script src="embroidery.js"></script>
+    <script src="../site-transition.js"></script>
+  </body>
+</html>
