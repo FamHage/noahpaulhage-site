@@ -49,12 +49,10 @@ html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0;
 
 .homepage__link--embroidery { top: 53.8%; left: 74%; width: 28%; }
 
-.sketchbook-section { position:relative; min-height:100svh; overflow:hidden; background:radial-gradient(ellipse at 50% 48%,rgba(255,255,255,.94),rgba(242,240,235,.9) 46%,rgba(228,226,220,.96)),linear-gradient(120deg,#e7e4df,#f5f4f1 48%,#e6e1de); opacity:1; transition:opacity 420ms ease; }
-.sketchbook-section::before { position:absolute; inset:0; background-image:repeating-linear-gradient(0deg,rgba(93,86,83,.035) 0 1px,transparent 1px 4px); content:""; opacity:.32; pointer-events:none; }
-.sketchbook-section__title { position:absolute; top:15%; left:50%; z-index:1; display:block; width:min(48rem,58vw); height:auto; transform:translateX(-50%); }
-.sketchbook-section__thumbnail { position:absolute; bottom:10%; left:clamp(2rem,13vw,15rem); z-index:1; display:block; width:clamp(10rem,18vw,18rem); transition:transform 800ms cubic-bezier(.22,.61,.36,1),opacity 500ms ease; }
+.sketchbook-section { position:relative; min-height:100svh; overflow:hidden; background:#ece9e6; opacity:1; transition:opacity 420ms ease; }
+.sketchbook-section__thumbnail { position:absolute; inset:0; z-index:1; display:block; transition:transform 800ms cubic-bezier(.22,.61,.36,1),opacity 500ms ease; }
 .sketchbook-section__thumbnail img { display:block; width:100%; height:auto; }
-.sketchbook-section__thumbnail:hover { opacity:.84; transform:translateY(-.35rem) scale(1.035) rotate(-.4deg); }
+.sketchbook-section__thumbnail:hover { opacity:.88; transform:translateY(-.2rem) scale(1.012); }
 .sketchbook-section__thumbnail:focus-visible { outline:1px solid #6d6871; outline-offset:.45rem; }
 
 @media (max-aspect-ratio: 4 / 5) {
@@ -64,8 +62,6 @@ html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0;
   .homepage__link--photos { top: 61%; left: -6%; width: 38%; }
   .homepage__link--embroidery { top: 62%; left: 69%; width: 36%; }
   .sketchbook-section { min-height:82svh; }
-  .sketchbook-section__title { top:16%; width:78vw; }
-  .sketchbook-section__thumbnail { bottom:12%; left:10%; width:min(15rem,52vw); }
 }
 
 @media (prefers-reduced-motion: reduce) {
