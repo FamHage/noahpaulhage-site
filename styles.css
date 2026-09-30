@@ -1,58 +1,58 @@
-:root {
-  --page-background: #f6f6f4;
-  --page-foreground: #202020;
-  --placeholder-border: #bdbdb9;
-  --page-gutter: clamp(1rem, 4vw, 3rem);
-}
-
 * { box-sizing: border-box; }
 
-html { scroll-behavior: smooth; }
+html, body { width: 100%; min-width: 320px; min-height: 100%; margin: 0; }
 
-body {
-  margin: 0;
-  min-width: 320px;
-  color: var(--page-foreground);
-  background: var(--page-background);
-  font-family: Arial, sans-serif;
+body { overflow: hidden; background: #7892be; }
+
+.homepage {
+  position: relative;
+  width: 100vw;
+  height: 100svh;
+  min-height: 30rem;
+  overflow: hidden;
+  background: url("images/homepage-background.png") center center / cover no-repeat;
 }
 
-a { color: inherit; }
-
-:focus-visible { outline: 2px solid currentColor; outline-offset: 4px; }
-
-.site-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 1rem;
-  min-height: 4rem;
-  padding: 0 var(--page-gutter);
-  border-bottom: 1px solid var(--placeholder-border);
+.homepage__logo,
+.homepage__link {
+  position: absolute;
+  display: block;
 }
 
-.site-name, nav a { text-decoration: none; }
-
-nav { display: flex; gap: 1rem; }
-
-.page-section {
-  min-height: min(70svh, 48rem);
-  padding: clamp(3rem, 10vw, 8rem) var(--page-gutter);
-  border-bottom: 1px solid var(--placeholder-border);
+.homepage__logo {
+  z-index: 1;
+  top: 4.5%;
+  left: 26%;
+  width: 48%;
+  height: auto;
+  pointer-events: none;
+  user-select: none;
 }
 
-h1, h2 { margin: 0 0 2rem; font: inherit; font-size: clamp(1.5rem, 4vw, 3rem); font-weight: 400; }
+.homepage__link { z-index: 2; transition: opacity 180ms ease, transform 180ms ease; }
 
-.placeholder-slot {
-  display: grid;
-  width: min(100%, 48rem);
-  min-height: 18rem;
-  place-items: center;
-  border: 1px dashed var(--placeholder-border);
-  color: #666;
-  font-size: .875rem;
+.homepage__link img { display: block; width: 100%; height: auto; }
+
+.homepage__link:hover { opacity: .94; transform: scale(1.02); }
+
+.homepage__link:focus-visible { outline: 1px solid rgba(255, 255, 255, .9); outline-offset: 4px; }
+
+.homepage__link--art { top: -1.5%; left: -2.2%; width: 35.5%; }
+
+.homepage__link--looks { top: -1.2%; left: 74.2%; width: 28%; }
+
+.homepage__link--photos { top: 52.7%; left: -1.5%; width: 28.5%; }
+
+.homepage__link--embroidery { top: 53.8%; left: 74%; width: 28%; }
+
+@media (max-aspect-ratio: 4 / 5) {
+  .homepage__logo { top: 14%; left: 24%; width: 52%; }
+  .homepage__link--art { top: 1%; left: -5%; width: 38%; }
+  .homepage__link--looks { top: 1%; left: 70%; width: 35%; }
+  .homepage__link--photos { top: 61%; left: -6%; width: 38%; }
+  .homepage__link--embroidery { top: 62%; left: 69%; width: 36%; }
 }
 
-@media (max-width: 540px) {
-  .site-header { align-items: flex-start; flex-direction: column; justify-content: center; padding-block: 1rem; }
+@media (prefers-reduced-motion: reduce) {
+  .homepage__link { transition: none; }
 }
