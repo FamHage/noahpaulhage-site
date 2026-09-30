@@ -1,0 +1,21 @@
+(() => {
+  const sketchbook = window.SKETCHBOOKS?.[0]; if (!sketchbook) return;
+  const currentButton = document.querySelector("[data-current-page]"), currentImage = currentButton.querySelector("img");
+  const previousButton = document.querySelector("[data-previous]"), previousImage = previousButton.querySelector("img");
+  const nextButton = document.querySelector("[data-next]"), nextImage = nextButton.querySelector("img");
+  const counter = document.querySelector("[data-current]"), total = document.querySelector("[data-total]");
+  const backdrop = document.querySelector("[data-card-backdrop]"), card = document.querySelector("[data-page-card]"), pageFlip = document.querySelector("[data-page-flip]");
+  const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches; let currentIndex = 0, isTurning = false;
+  total.textContent = sketchbook.pages.length;
+  const writeCard = (page) => { document.querySelector("[data-card-title]").textContent = page.title; document.querySelector("[data-card-sketchbook]").textContent = sketchbook.title; document.querySelector("[data-card-number]").textContent = `${page.pageNumber}/${sketchbook.pages.length}`; document.querySelector("[data-card-date]").textContent = page.date; document.querySelector("[data-card-medium]").textContent = page.medium; document.querySelector("[data-card-process]").textContent = page.process; document.querySelector("[data-card-context]").textContent = page.context; document.querySelector("[data-card-notes]").textContent = page.notes; };
+  const setPreview = (button, image, page, direction) => { button.hidden = !page; if (!page) return; image.src = page.image; image.alt = `${direction} page: ${page.alt}`; button.setAttribute("aria-label", `${direction} page, ${page.pageNumber}`); };
+  const render = () => { const page = sketchbook.pages[currentIndex]; currentImage.src = page.image; currentImage.alt = page.alt; currentButton.setAttribute("aria-label", `Open index card for ${page.alt}`); counter.textContent = currentIndex + 1; setPreview(previousButton, previousImage, sketchbook.pages[currentIndex - 1], "Previous"); setPreview(nextButton, nextImage, sketchbook.pages[currentIndex + 1], "Next"); writeCard(page); };
+  const playFlip = () => { if (!pageFlip) return; pageFlip.currentTime = 0; pageFlip.volume = .27; pageFlip.play().catch(() => {}); };
+  const turn = (direction) => { const nextIndex = currentIndex + direction; if (isTurning || nextIndex < 0 || nextIndex >= sketchbook.pages.length) return; isTurning = true; playFlip(); const stage = document.querySelector(".page-stage"); stage.classList.add(direction > 0 ? "is-turning-next" : "is-turning-previous"); window.setTimeout(() => { currentIndex = nextIndex; render(); stage.classList.remove("is-turning-next", "is-turning-previous"); isTurning = false; }, reducedMotion ? 0 : 360); };
+  const openCard = () => { backdrop.hidden = false; document.documentElement.classList.add("index-card-open"); card.querySelector("[data-close-card]").focus(); };
+  const closeCard = () => { backdrop.hidden = true; document.documentElement.classList.remove("index-card-open"); currentButton.focus(); };
+  previousButton.addEventListener("click", () => turn(-1)); nextButton.addEventListener("click", () => turn(1)); currentButton.addEventListener("click", openCard); document.querySelector("[data-close-card]").addEventListener("click", closeCard);
+  backdrop.addEventListener("click", (event) => { if (event.target === backdrop) closeCard(); });
+  document.addEventListener("keydown", (event) => { if (event.key === "Escape" && !backdrop.hidden) closeCard(); if (!backdrop.hidden) return; if (event.key === "ArrowLeft") turn(-1); if (event.key === "ArrowRight") turn(1); });
+  render();
+})();
