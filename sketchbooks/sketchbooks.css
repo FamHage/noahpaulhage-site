@@ -1,8 +1,7 @@
 * { box-sizing:border-box; }
 html, body { width:100%; min-width:320px; min-height:100%; margin:0; }
 body { overflow:hidden; color:#5c5962; font-family:Arial,Helvetica,sans-serif; }
-.sketchbook-viewer { position:relative; min-height:100svh; overflow:hidden; isolation:isolate; background:#e8e5df; animation:viewer-in 560ms ease both; transition:opacity 420ms ease; }
-.sketchbook-viewer::before { position:absolute; inset:0; z-index:-1; background:radial-gradient(ellipse at 50% 45%,rgba(255,255,255,.98),rgba(238,235,229,.95) 58%,rgba(221,217,211,.96)),repeating-linear-gradient(0deg,rgba(103,95,91,.035) 0 1px,transparent 1px 4px); content:""; }
+.sketchbook-viewer { position:relative; min-height:100svh; overflow:hidden; isolation:isolate; background:#e8e5df url("../images/sketchbooks/homepage-sketchbook.png") center center / cover no-repeat; animation:viewer-in 560ms ease both; transition:opacity 420ms ease; }
 html.page-leaving .sketchbook-viewer { opacity:0; }
 .return-home { position:absolute; z-index:5; top:1.6rem; left:1.6rem; display:block; width:clamp(3rem,5vw,4.5rem); transition:opacity 240ms ease,transform 460ms cubic-bezier(.22,.61,.36,1); }
 .return-home img { display:block; width:100%; height:auto; }
