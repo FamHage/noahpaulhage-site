@@ -1,0 +1,135 @@
+* { box-sizing: border-box; }
+
+html, body { width: 100%; min-width: 320px; min-height: 100%; margin: 0; }
+
+body { overflow: hidden; color: #3e3a3e; font-family: Georgia, "Times New Roman", serif; }
+
+.about-scene {
+  position: relative;
+  min-height: 100svh;
+  overflow: hidden;
+  isolation: isolate;
+  background: #b2b4b4;
+  animation: about-page-in 560ms ease both;
+  transition: opacity 420ms ease;
+}
+
+html.page-leaving .about-scene { opacity: 0; }
+
+.about-scene__background {
+  position: absolute;
+  z-index: -2;
+  inset: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+  pointer-events: none;
+  user-select: none;
+}
+
+.about-scene::after {
+  position: absolute;
+  z-index: 2;
+  inset: 0;
+  content: "";
+  pointer-events: none;
+  background: rgba(53, 47, 50, 0);
+  transition: background 180ms ease;
+}
+
+.about-scene.is-card-open::after { background: rgba(53, 47, 50, .15); }
+
+.about-portrait {
+  position: absolute;
+  z-index: 1;
+  top: clamp(.75rem, 5.5svh, 4rem);
+  left: clamp(.5rem, 2vw, 2rem);
+  display: block;
+  width: min(82vw, 68rem);
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  transition: opacity 180ms ease, transform 220ms ease;
+}
+
+.about-portrait img { display: block; width: 100%; height: auto; }
+.about-portrait:hover { opacity: .98; transform: scale(1.012); }
+.about-portrait:focus-visible, .about-home:focus-visible, .about-card__close:focus-visible, .about-card__contact a:focus-visible { outline: 1px solid #413b42; outline-offset: 5px; }
+
+.about-home {
+  position: absolute;
+  z-index: 3;
+  right: clamp(1rem, 2.5vw, 2.5rem);
+  bottom: clamp(1rem, 2.5vw, 2.5rem);
+  color: rgba(45, 43, 47, .8);
+  font-size: .76rem;
+  font-style: italic;
+  letter-spacing: .08em;
+  text-decoration: none;
+  transition: opacity 180ms ease;
+}
+
+.about-home:hover { opacity: .6; }
+
+.about-card-layer {
+  position: absolute;
+  z-index: 4;
+  inset: 0;
+  display: grid;
+  align-items: center;
+  justify-items: end;
+  padding: clamp(1rem, 7vw, 7rem);
+  pointer-events: auto;
+  opacity: 0;
+  transition: opacity 180ms ease;
+}
+
+.about-card-layer[hidden] { display: none; }
+.about-card-layer.is-open { opacity: 1; }
+
+.about-card {
+  position: relative;
+  width: min(27rem, 88vw);
+  max-height: min(76svh, 49rem);
+  overflow: auto;
+  padding: clamp(1.7rem, 3vw, 2.6rem);
+  border: 1px solid rgba(86, 75, 72, .45);
+  color: #4a4245;
+  background-color: #f3eee3;
+  background-image: radial-gradient(rgba(98, 83, 73, .09) .45px, transparent .8px), linear-gradient(110deg, rgba(255, 255, 255, .45), rgba(225, 215, 199, .14));
+  background-size: 5px 5px, auto;
+  box-shadow: 0 3px 20px rgba(48, 43, 45, .16);
+  transform: translateY(.75rem);
+  transition: transform 180ms ease;
+}
+
+.about-card-layer.is-open .about-card { transform: translateY(0); }
+.about-card__content > header { margin: 0 0 1.5rem; padding: 0 1.25rem .9rem 0; border-bottom: 1px solid rgba(86, 75, 72, .42); }
+.about-card h1 { margin: 0; font-size: clamp(1.55rem, 3vw, 2.15rem); font-weight: 400; letter-spacing: .015em; }
+.about-card header p { margin: .35rem 0 0; color: #75646a; font-size: .78rem; font-style: italic; letter-spacing: .06em; }
+.about-card section { margin: 1.1rem 0 0; }
+.about-card h2 { margin: 0 0 .28rem; color: #78666c; font-size: .7rem; font-weight: 400; letter-spacing: .13em; text-transform: uppercase; }
+.about-card section p { margin: 0; font-size: .93rem; line-height: 1.5; }
+.about-card__meta { margin: .8rem 0 0; font-size: .82rem; line-height: 1.4; }
+.about-card__meta span { display: inline-block; min-width: 5.8rem; color: #78666c; font-size: .65rem; letter-spacing: .11em; text-transform: uppercase; }
+.about-card__close { position: absolute; top: .75rem; right: .8rem; padding: .15rem; border: 0; color: #62565a; background: transparent; font: 1.3rem/1 Arial, sans-serif; cursor: pointer; }
+.about-card__contact { display: flex; flex-wrap: wrap; gap: .45rem 1rem; margin-top: 1.3rem; padding-top: .9rem; border-top: 1px solid rgba(86, 75, 72, .35); }
+.about-card__contact a { color: #5a4b51; font-size: .78rem; font-style: italic; text-decoration-color: rgba(90, 75, 81, .55); text-underline-offset: .18rem; }
+
+@keyframes about-page-in { from { opacity: 0; } to { opacity: 1; } }
+
+@media (max-aspect-ratio: 4 / 5) {
+  .about-scene__background { object-position: 46% center; }
+  .about-portrait { top: clamp(2rem, 8svh, 4rem); left: -1.25rem; width: 145vw; }
+  .about-home { right: 1rem; bottom: 1rem; }
+  .about-card-layer { align-items: end; justify-items: center; padding: 1rem 6vw 5svh; }
+  .about-card { width: 100%; max-height: 67svh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .about-scene, .about-scene::after, .about-portrait, .about-card-layer, .about-card, .about-home { animation: none; transition: none; }
+}

@@ -1,0 +1,34 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="About Noah Paul Hage." />
+    <title>About — Noah Paul Hage</title>
+    <link rel="icon" href="../favicon-bridgeig.png" type="image/png" sizes="512x512" />
+    <link rel="shortcut icon" href="../favicon-bridgeig.png" type="image/png" />
+    <link rel="apple-touch-icon" href="../favicon-bridgeig.png" />
+    <link rel="stylesheet" href="about.css" />
+  </head>
+  <body>
+    <main class="about-scene" aria-label="About Noah Paul Hage">
+      <img class="about-scene__background" src="../images/about/about-me-background.png" alt="" aria-hidden="true" />
+
+      <button class="about-portrait" type="button" aria-haspopup="dialog" aria-controls="about-card" aria-expanded="false">
+        <img src="../images/about/noah-face.png" alt="Portrait of Noah Paul Hage with handwritten name" />
+      </button>
+
+      <a class="about-home" href="../" data-page-link>home</a>
+
+      <div class="about-card-layer" data-card-layer hidden>
+        <section class="about-card" id="about-card" role="dialog" aria-modal="true" aria-labelledby="about-card-name" tabindex="-1">
+          <button class="about-card__close" type="button" aria-label="Close about card">×</button>
+          <div class="about-card__content" data-about-card></div>
+        </section>
+      </div>
+    </main>
+    <script src="about-data.js"></script>
+    <script src="about.js"></script>
+    <script src="../site-transition.js"></script>
+  </body>
+</html>
