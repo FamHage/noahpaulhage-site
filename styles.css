@@ -15,7 +15,7 @@ body { overflow-x: hidden; overflow-y: auto; background: #7892be; }
   transition: opacity 420ms ease;
 }
 
-html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0; }
+html.page-leaving .homepage, html.page-leaving .sketchbook-section, html.page-leaving .touchme-section { opacity: 0; }
 
 .homepage__logo,
 .homepage__link {
@@ -108,6 +108,28 @@ html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0;
 .sketchbook-section__thumbnail:hover { opacity:.88; transform:translateY(-.2rem) scale(1.012); }
 .sketchbook-section__thumbnail:focus-visible { outline:1px solid #6d6871; outline-offset:.45rem; }
 
+.touchme-section {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  overflow: hidden;
+  place-items: center;
+  background: #c6c7c0 url("images/touchme/touch-me-scrollpage-background.png") center / cover no-repeat;
+  opacity: 1;
+  transition: opacity 420ms ease;
+}
+
+.touchme-section__link {
+  display: block;
+  width: clamp(15rem, 34vw, 31rem);
+  margin-top: clamp(1rem, 6svh, 5rem);
+  transition: opacity 240ms ease, transform 700ms cubic-bezier(.22,.61,.36,1);
+}
+
+.touchme-section__link img { display: block; width: 100%; height: auto; }
+.touchme-section__link:hover { opacity: .92; transform: translateY(-.22rem) scale(1.012); }
+.touchme-section__link:focus-visible { outline: 1px solid #3e5964; outline-offset: .7rem; }
+
 @media (max-aspect-ratio: 4 / 5) {
   .homepage__logo { top: 14%; left: 24%; width: 52%; }
   .homepage__link--art { top: 1%; left: -5%; width: 38%; }
@@ -118,8 +140,9 @@ html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0;
   .sketchbook-section__atmosphere { object-position: center; }
   .sketchbook-section__composition { top: clamp(2.5rem, 10svh, 5.5rem); width:min(78vw, 31rem); }
   .sketchbook-section__thumbnail { width:clamp(8rem, 31vw, 13rem); margin-left:clamp(.25rem, 5vw, 2rem); }
+  .touchme-section__link { width:clamp(14rem, 68vw, 25rem); }
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homepage, .homepage__logo, .homepage__link, .sketchbook-section, .sketchbook-section__thumbnail { transition: none; }
+  .homepage, .homepage__logo, .homepage__link, .sketchbook-section, .sketchbook-section__thumbnail, .touchme-section, .touchme-section__link { transition: none; }
 }
