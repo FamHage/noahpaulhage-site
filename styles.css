@@ -29,9 +29,13 @@ html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0;
   left: 26%;
   width: 48%;
   height: auto;
-  pointer-events: none;
   user-select: none;
+  transition: opacity 180ms ease, transform 180ms ease;
 }
+
+.homepage__logo img { display: block; width: 100%; height: auto; }
+.homepage__logo:hover { opacity: .94; transform: scale(1.012); }
+.homepage__logo:focus-visible { outline: 1px solid rgba(255, 255, 255, .9); outline-offset: 4px; }
 
 .homepage__link { z-index: 2; transition: opacity 180ms ease, transform 180ms ease; }
 
@@ -117,5 +121,5 @@ html.page-leaving .homepage, html.page-leaving .sketchbook-section { opacity: 0;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  .homepage, .homepage__link, .sketchbook-section, .sketchbook-section__thumbnail { transition: none; }
+  .homepage, .homepage__logo, .homepage__link, .sketchbook-section, .sketchbook-section__thumbnail { transition: none; }
 }
