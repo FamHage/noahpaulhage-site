@@ -1,0 +1,76 @@
+* { box-sizing: border-box; }
+
+html, body { width: 100%; min-width: 320px; min-height: 100%; margin: 0; }
+
+body {
+  overflow: hidden;
+  background: #c6c7c0 url("../images/touchme/touch-me-scrollpage-background.png") center / cover no-repeat;
+}
+
+.touchme-experience {
+  position: relative;
+  display: grid;
+  width: 100vw;
+  height: 100svh;
+  min-height: 28rem;
+  place-items: center;
+  isolation: isolate;
+  opacity: 0;
+  transition: opacity 420ms ease;
+}
+
+html.touchme-ready .touchme-experience { opacity: 1; }
+html.page-leaving .touchme-experience { opacity: 0; }
+
+.touchme-home {
+  position: absolute;
+  z-index: 2;
+  top: clamp(1rem, 2.5vw, 1.7rem);
+  left: clamp(1rem, 2.5vw, 1.7rem);
+  display: block;
+  width: clamp(3rem, 5vw, 4.5rem);
+  transition: opacity 180ms ease, transform 180ms ease;
+}
+
+.touchme-home img { display: block; width: 100%; height: auto; }
+.touchme-home:hover { opacity: .94; transform: scale(1.02); }
+.touchme-home:focus-visible, .touchme-object:focus-visible { outline: 1px solid rgba(31, 57, 69, .9); outline-offset: .6rem; }
+
+.touchme-object {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  width: min(72vw, 74svh, 67rem);
+  height: min(78svh, 49rem);
+  margin: 2.4rem 1rem 0;
+  padding: 0;
+  place-items: center;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.touchme-object__image {
+  display: block;
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  user-select: none;
+  transition: opacity 280ms ease, transform 280ms ease;
+}
+
+.touchme-object:hover .touchme-object__image { opacity: .94; transform: translateY(-2px) scale(1.008) rotate(.12deg); }
+.touchme-object.is-changing .touchme-object__image { opacity: 0; transform: translateY(4px) scale(.987) rotate(-.18deg); }
+
+@media (max-aspect-ratio: 4 / 5) {
+  .touchme-object { width: min(92vw, 72svh); height: min(72svh, 43rem); margin-top: 2rem; }
+  .touchme-home { width: clamp(2.8rem, 11vw, 3.6rem); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .touchme-experience, .touchme-home, .touchme-object__image { transition: opacity 150ms ease; }
+  .touchme-object:hover .touchme-object__image, .touchme-object.is-changing .touchme-object__image { transform: none; }
+}
