@@ -63,6 +63,9 @@ body { overflow-x: hidden; overflow-y: auto; background: #7892be; }
 .homepage-intro__note { max-width:9rem; font:italic .72rem/1.2 Georgia,serif; letter-spacing:.015em; animation:intro-ephemera 6200ms ease-in-out forwards; }
 .homepage-intro__metadata { font: .51rem/1.1 "Courier New",monospace; letter-spacing:.12em; animation:intro-ephemera 9800ms ease-in-out forwards; }
 .homepage-intro__residue { position:absolute; z-index:1; right:clamp(1rem,4vw,4rem); bottom:.65rem; color:rgba(51,69,82,.17); font:.47rem/1 "Courier New",monospace; letter-spacing:.15em; opacity:calc(var(--intro-dissolve) * .75); pointer-events:none; transition:opacity 300ms ease; }
+.homepage-intro__cursor { position:fixed; z-index:20; top:0; left:0; display:none; width:clamp(2.45rem,3.2vw,3.5rem); height:auto; max-width:none; pointer-events:none; user-select:none; opacity:0; transform:translate3d(-100px,-100px,0) translate(-16%,-16%) scale(1); transition:opacity 120ms ease, transform 110ms linear; will-change:transform,opacity; }
+.homepage-intro__cursor.is-visible { display:block; opacity:.94; }
+.homepage-intro__cursor.is-interactive { opacity:1; }
 
 .homepage-intro__logo {
   position: relative;
@@ -247,8 +250,13 @@ html.page-leaving .homepage-intro, html.page-leaving .homepage, html.page-leavin
   .touchme-section__link { width:clamp(14rem, 68vw, 25rem); }
 }
 
+@media (hover: none), (pointer: coarse) {
+  .homepage-intro__cursor { display:none !important; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .homepage-intro, .homepage-intro__image, .homepage-intro__logo, .homepage-intro__afterimage, .homepage-intro__process, .homepage-intro__scan-light, .homepage, .homepage__logo, .homepage__link, .sketchbook-section, .sketchbook-section__thumbnail, .touchme-section, .touchme-section__link { transition: none; animation: none; }
   .homepage-intro__image, .homepage-intro__image.is-visible { transform:translate(-50%, -50%); }
   .homepage-intro__thread, .homepage-intro__afterimages, .homepage-intro__ephemera, .homepage-intro__scan-light { display:none; }
+  .homepage-intro__cursor { transition:none; }
 }

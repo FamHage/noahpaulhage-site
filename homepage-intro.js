@@ -15,12 +15,14 @@
   const afterimages = intro.querySelector(".homepage-intro__afterimages");
   const ephemera = intro.querySelector(".homepage-intro__ephemera");
   const scanLight = intro.querySelector(".homepage-intro__scan-light");
+  const customCursor = intro.querySelector(".homepage-intro__cursor");
   const logo = intro.querySelector(".homepage-intro__logo");
   const soundButton = intro.querySelector("[data-intro-sound]");
   const canvas = intro.querySelector(".homepage-intro__thread");
   const context2d = canvas.getContext("2d");
   const imageCache = new Map();
   const audioCache = new Map();
+  const cursorEnabled = !touchDevice && matchMedia("(pointer: fine)").matches;
   let visible = true, audioUnlocked = false, muted = false, audioContext, soundTimer, nextTimer, quietUntil = 0;
   let activeSounds = new Set(), threadPoints = [], trailFrame = 0, holdTimer, hoverTimer, isHolding = false;
   let imageIndex = 0, activeImage = currentImage, queuedImage = nextImage;
@@ -97,6 +99,13 @@
   function revealProcess() { const slide = order[imageIndex]; processImage.src = slide.processImage || slide.image; intro.classList.add("is-revealing"); }
   function clearReveal() { clearTimeout(holdTimer); clearTimeout(hoverTimer); intro.classList.remove("is-revealing"); isHolding = false; }
   function updateDissolve() { const progress = Math.max(0, Math.min(1, scrollY / Math.max(1, innerHeight * .84))); intro.style.setProperty("--intro-dissolve", progress.toFixed(3)); if (audioUnlocked && progress > .12) refreshSoundscape(); }
+  function hideCursor() { if (customCursor) customCursor.classList.remove("is-visible", "is-interactive"); }
+  function moveCursor(event) {
+    if (!cursorEnabled || !visible) return;
+    customCursor.style.transform = `translate3d(${event.clientX}px,${event.clientY}px,0) translate(-16%,-16%) scale(${event.target.closest("a, button") ? 1.07 : 1})`;
+    customCursor.classList.add("is-visible");
+    customCursor.classList.toggle("is-interactive", Boolean(event.target.closest("a, button")));
+  }
 
   const first = order[imageIndex]; currentImage.src = first.image; currentImage.classList.add("is-visible"); markSeen(first); preloadUpcoming(); nextTimer = setTimeout(showNextImage, imageDuration()); if (specialState === "offset-logo") logo.style.translate = ".5rem -.35rem"; if (specialState === "mono") intro.classList.add("is-monochrome"); scheduleEphemera(); resizeCanvas();
   document.addEventListener("pointerdown", (event) => { if (!event.target.closest("[data-intro-sound]")) unlockSoundscape(); }, { once: true, passive: true });
@@ -107,8 +116,10 @@
   ["pointerup", "pointercancel", "pointerleave"].forEach((eventName) => slideshow.addEventListener(eventName, clearReveal));
   if (!touchDevice) {
     slideshow.addEventListener("mouseenter", () => { const slide = order[imageIndex]; if (slide.processImage) hoverTimer = setTimeout(revealProcess, 2800); }); slideshow.addEventListener("mouseleave", clearReveal);
-    intro.addEventListener("pointermove", (event) => { if (!visible) return; const rect = intro.getBoundingClientRect(); threadPoints.push({ x: event.clientX - rect.left, y: event.clientY - rect.top, time: performance.now() }); if (threadPoints.length > 56) threadPoints.shift(); if (!trailFrame) trailFrame = requestAnimationFrame(drawTrail); const bounds = logo.getBoundingClientRect(), proximity = Math.max(0, 1 - Math.hypot(bounds.left + bounds.width / 2 - event.clientX, bounds.top + bounds.height / 2 - event.clientY) / Math.max(bounds.width, 1)); logo.style.filter = `contrast(${1 + proximity * .035})`; });
+    intro.addEventListener("pointermove", (event) => { if (!visible) return; moveCursor(event); const rect = intro.getBoundingClientRect(); threadPoints.push({ x: event.clientX - rect.left, y: event.clientY - rect.top, time: performance.now() }); if (threadPoints.length > 56) threadPoints.shift(); if (!trailFrame) trailFrame = requestAnimationFrame(drawTrail); const bounds = logo.getBoundingClientRect(), proximity = Math.max(0, 1 - Math.hypot(bounds.left + bounds.width / 2 - event.clientX, bounds.top + bounds.height / 2 - event.clientY) / Math.max(bounds.width, 1)); logo.style.filter = `contrast(${1 + proximity * .035})`; });
+    intro.addEventListener("pointerleave", hideCursor);
+    addEventListener("blur", hideCursor);
   }
-  new IntersectionObserver(([entry]) => { visible = entry.intersectionRatio > .2; if (!visible) { threadPoints = []; context2d.clearRect(0, 0, canvas.width, canvas.height); cancelAnimationFrame(trailFrame); trailFrame = 0; } refreshSoundscape(); }, { threshold: [0, .2, .55] }).observe(intro);
+  new IntersectionObserver(([entry]) => { visible = entry.intersectionRatio > .2; if (!visible) { hideCursor(); threadPoints = []; context2d.clearRect(0, 0, canvas.width, canvas.height); cancelAnimationFrame(trailFrame); trailFrame = 0; } refreshSoundscape(); }, { threshold: [0, .2, .55] }).observe(intro);
   let scrollFrame = 0; addEventListener("scroll", () => { if (!scrollFrame) scrollFrame = requestAnimationFrame(() => { scrollFrame = 0; updateDissolve(); }); }, { passive: true }); addEventListener("resize", resizeCanvas, { passive: true }); document.addEventListener("visibilitychange", refreshSoundscape); updateDissolve();
 })();
