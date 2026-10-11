@@ -140,11 +140,18 @@
   window.setTimeout(showNextImage, imageDuration());
 
   const unlockEvents = ["pointerdown", "keydown"];
-  unlockEvents.forEach((eventName) => document.addEventListener(eventName, unlockSoundscape, { once: true, passive: eventName === "pointerdown" }));
+  const unlockFromInteraction = (event) => {
+    if (event.target.closest && event.target.closest("[data-intro-sound]")) return;
+    unlockSoundscape();
+  };
+  unlockEvents.forEach((eventName) => document.addEventListener(eventName, unlockFromInteraction, { once: true, passive: eventName === "pointerdown" }));
 
   soundButton.addEventListener("click", (event) => {
     event.stopPropagation();
-    if (!audioUnlocked) unlockSoundscape();
+    if (!audioUnlocked) {
+      unlockSoundscape();
+      return;
+    }
     muted = !muted;
     soundButton.setAttribute("aria-pressed", String(!muted));
     soundButton.setAttribute("aria-label", muted ? "Unmute introduction sound" : "Mute introduction sound");
