@@ -13,35 +13,20 @@
     const item = itemAt(position);
     const preview = new Image();
     preview.src = item.image;
-    if (!audioCache.has(item.sound)) {
-      const audio = new Audio(item.sound);
-      audio.preload = "auto";
-      audio.volume = 0.25;
-      audioCache.set(item.sound, audio);
-    }
   }
 
   function stopAudio(audio) {
     if (!audio) return;
-    const start = audio.volume;
-    const steps = 8;
-    let step = 0;
-    const fade = window.setInterval(() => {
-      step += 1;
-      audio.volume = Math.max(0, start * (1 - step / steps));
-      if (step >= steps) {
-        window.clearInterval(fade);
-        audio.pause();
-        audio.currentTime = 0;
-        audio.volume = 0.25;
-      }
-    }, 32);
+    audio.pause();
+    audio.currentTime = 0;
+    audio.volume = 0.25;
   }
 
   function playCurrentSound() {
     const current = itemAt(index);
     const audio = audioCache.get(current.sound) || new Audio(current.sound);
     audioCache.set(current.sound, audio);
+    audio.preload = "metadata";
     stopAudio(activeAudio);
     activeAudio = audio;
     audio.currentTime = 0;
