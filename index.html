@@ -11,6 +11,18 @@
     <link rel="stylesheet" href="styles.css" />
   </head>
   <body>
+    <section class="homepage-intro" aria-label="Noah Paul Hage introduction" data-intro>
+      <div class="homepage-intro__slideshow" aria-hidden="true">
+        <img class="homepage-intro__image homepage-intro__image--current" alt="" />
+        <img class="homepage-intro__image homepage-intro__image--next" alt="" />
+      </div>
+      <a class="homepage-intro__logo" href="aboutme/" aria-label="About Noah Paul Hage" data-page-link>
+        <img src="images/homepage-noah-paul-hage.png" alt="Noah Paul Hage" />
+      </a>
+      <button class="homepage-intro__sound" type="button" aria-label="Unmute introduction sound" aria-pressed="false" data-intro-sound>
+        <span aria-hidden="true">⌁</span>
+      </button>
+    </section>
     <main class="homepage" aria-label="Noah Paul Hage">
       <a class="homepage__logo" href="aboutme/" aria-label="About Noah Paul Hage" data-page-link>
         <img src="images/homepage-noah-paul-hage.png" alt="Noah Paul Hage" />
@@ -52,5 +64,6 @@
       </a>
     </section>
     <script src="site-transition.js"></script>
+    <script src="homepage-intro.js"></script>
   </body>
 </html>
