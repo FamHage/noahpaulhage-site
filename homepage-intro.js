@@ -146,6 +146,10 @@
   };
   unlockEvents.forEach((eventName) => document.addEventListener(eventName, unlockFromInteraction, { once: true, passive: eventName === "pointerdown" }));
 
+  ["pointerdown", "keydown"].forEach((eventName) => {
+    soundButton.addEventListener(eventName, (event) => event.stopPropagation());
+  });
+
   soundButton.addEventListener("click", (event) => {
     event.stopPropagation();
     if (!audioUnlocked) {
